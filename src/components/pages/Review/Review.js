@@ -6,7 +6,10 @@ class Review extends Component {
     return (
       <div>
         <h1>I'll display stuff here.</h1>
+        <button>Submit</button>
       </div>
     );
   }
 }
+
+export default Review;

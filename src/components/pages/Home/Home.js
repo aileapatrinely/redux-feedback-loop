@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
+  gotoFeeling = () => {
+    this.props.history.push('/feeling');
+  };
+
   render() {
     return (
       <div>
-        <button>Start Feedback!</button>
+        <button onClick={this.gotoFeeling}>Start Feedback!</button>
       </div>
     );
   }

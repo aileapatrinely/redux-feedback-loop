@@ -7,7 +7,25 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const storeInstance = createStore(() => {});
+const feedback = {
+  feeling: 0,
+  understanding: 0,
+  support: 0,
+  comments: '',
+};
+
+const feedbackReducer = (state = feedback, action) => {
+  if (action.type === 'ADD_FEELINGS') {
+    return [...state, action.payload.feedback.feelings];
+  }
+  return state;
+};
+
+const storeInstance = createStore(
+  combineReducers({
+    feedbackReducer,
+  })
+);
 
 ReactDOM.render(
   <Provider store={storeInstance}>
