@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class Feeling extends Component {
   state = {
@@ -20,7 +21,10 @@ class Feeling extends Component {
   };
 
   handleClick = () => {
-    console.log(`I SAID I'M HANDLING IT!`);
+    this.props.dispatch({
+      type: 'ADD_FEELINGS',
+      payload: this.state.feedback,
+    });
   };
 
   render() {
@@ -34,4 +38,4 @@ class Feeling extends Component {
   }
 }
 
-export default Feeling;
+export default connect()(Feeling);
