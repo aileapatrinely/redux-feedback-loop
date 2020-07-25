@@ -25,6 +25,11 @@ class Feeling extends Component {
       type: 'ADD_FEELINGS',
       payload: this.state.feedback,
     });
+    this.gotoUnderstanding();
+  };
+
+  gotoUnderstanding = () => {
+    this.props.history.push('/understanding');
   };
 
   render() {
