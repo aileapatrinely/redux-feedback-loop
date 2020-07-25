@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class Understanding extends Component {
+  addFeelings = (feedback) => {
+    this.setState({
+      feedback: { ...this.state.feedback, feedback },
+    });
+  };
+
   handleChange = () => {
     console.log('Handling it.');
   };
@@ -14,8 +20,14 @@ class Understanding extends Component {
     return (
       <div>
         <h1>How well are you understanding the content?</h1>
-        <input onChange={this.handleChange()} type="number" />
-        <button onClick={this.handleClick()}>Next</button>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            onChange={this.handleChange()}
+            type="number"
+            value={this.props.state.feedback.understanding}
+          />
+          <button type="submit">Next</button>
+        </form>
       </div>
     );
   }

@@ -16,7 +16,7 @@ const feedback = {
 
 const feedbackReducer = (state = feedback, action) => {
   if (action.type === 'ADD_FEELINGS') {
-    return { ...state, feeling: action.payload.feedback };
+    return { ...state, feeling: action.payload };
   }
   return state;
 };
@@ -24,7 +24,8 @@ const feedbackReducer = (state = feedback, action) => {
 const storeInstance = createStore(
   combineReducers({
     feedbackReducer,
-  })
+  }),
+  applyMiddleware(logger)
 );
 
 ReactDOM.render(

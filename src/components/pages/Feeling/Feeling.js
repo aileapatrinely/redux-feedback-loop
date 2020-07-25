@@ -13,19 +13,20 @@ class Feeling extends Component {
   };
 
   handleChange = (feeling) => (event) => {
+    event.preventDefault();
     this.setState({
-      feedback: {
-        [feeling]: event.target.value,
-      },
+      feedback: { [feeling]: event.target.value },
     });
   };
 
-  handleClick = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     this.props.dispatch({
       type: 'ADD_FEELINGS',
       payload: this.state.feedback,
     });
     this.gotoUnderstanding();
+    this.props.addFeelings(this.props.feedback);
   };
 
   gotoUnderstanding = () => {
@@ -36,8 +37,14 @@ class Feeling extends Component {
     return (
       <div>
         <h1>How are you feeling today?</h1>
-        <input onChange={this.handleChange()} type="number" />
-        <button onClick={this.handleClick()}>Next</button>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            onChange={this.handleChange()}
+            type="number"
+            value={this.state.feedback.feeling}
+          />
+          <button type="submit">Next</button>
+        </form>
       </div>
     );
   }
