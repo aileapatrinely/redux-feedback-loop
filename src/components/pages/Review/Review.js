@@ -3,6 +3,18 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 class Review extends Component {
+  postFeedback(feedback) {
+    axios
+      .post('/feedback', feedback)
+      .then((response) => {
+        console.log('Posted?');
+      })
+      .catch((err) => {
+        console.log('Error in post', err);
+        alert('Error in postFeedback');
+      });
+  }
+
   render() {
     console.log(this.props);
     return (
