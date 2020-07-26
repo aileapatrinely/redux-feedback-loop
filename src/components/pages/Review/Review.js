@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 
 class Review extends Component {
   render() {
+    console.log(this.props);
     return (
       <div>
-        <ul>
-          <li>{this.props.store.feedbackReducer.map(feedback)}</li>
-        </ul>
+        <p>Review!</p>
         <button>Submit</button>
       </div>
     );
