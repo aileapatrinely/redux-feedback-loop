@@ -11,16 +11,16 @@ const feedback = {};
 
 const feedbackReducer = (state = feedback, action) => {
   if (action.type === 'ADD_FEELINGS') {
-    return { feeling: action.payload };
+    return { ...state, feeling: action.payload };
   }
   if (action.type === 'ADD_UNDERSTANDING') {
     return { ...state, understanding: action.payload };
   }
   if (action.type === 'ADD_SUPPORT') {
-    return { support: action.payload };
+    return { ...state, support: action.payload };
   }
   if (action.type === 'ADD_COMMENTS') {
-    return { comments: action.payload };
+    return { ...state, comments: action.payload };
   }
   return state;
 };
