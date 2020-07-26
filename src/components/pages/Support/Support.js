@@ -3,12 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 class Support extends Component {
-  state = {
-    feeling: 0,
-    understanding: 0,
-    support: 0,
-    comments: '',
-  };
+  state = 0;
 
   handleChange = (support) => (event) => {
     event.preventDefault();

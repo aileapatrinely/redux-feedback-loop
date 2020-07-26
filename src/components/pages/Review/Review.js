@@ -7,8 +7,13 @@ class Review extends Component {
     console.log(this.props);
     return (
       <div>
-        <p>Review!</p>
-        <button>Submit</button>
+        <p>{this.props.store.feedbackReducer.feeling}</p>
+        <p>{this.props.store.feedbackReducer.understanding}</p>
+        <p>{this.props.store.feedbackReducer.support}</p>
+        <p>{this.props.store.feedbackReducer.comments}</p>
+        <button onClick={this.postFeedback(this.props.store.feedbackReducer)}>
+          Submit
+        </button>
       </div>
     );
   }

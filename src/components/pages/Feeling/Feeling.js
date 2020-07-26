@@ -3,12 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 class Feeling extends Component {
-  state = {
-    feeling: 0,
-    understanding: 0,
-    support: 0,
-    comments: '',
-  };
+  state = 0;
 
   handleChange = (feeling) => (event) => {
     event.preventDefault();

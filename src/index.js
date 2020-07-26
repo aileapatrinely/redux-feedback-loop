@@ -7,12 +7,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const feedback = {
-  feeling: 0,
-  understanding: 0,
-  support: 0,
-  comments: '',
-};
+const feedback = {};
 
 const feedbackReducer = (state = feedback, action) => {
   if (action.type === 'ADD_FEELINGS') {
@@ -22,10 +17,10 @@ const feedbackReducer = (state = feedback, action) => {
     return { ...state, understanding: action.payload };
   }
   if (action.type === 'ADD_SUPPORT') {
-    return { ...state, support: action.payload };
+    return { support: action.payload };
   }
   if (action.type === 'ADD_COMMENTS') {
-    return { ...state, comments: action.payload };
+    return { comments: action.payload };
   }
   return state;
 };
