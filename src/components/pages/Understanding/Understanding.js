@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class Understanding extends Component {
-  addFeelings = (feedback) => {
+  state = {
+    feeling: 0,
+    understanding: 0,
+    support: 0,
+    comments: '',
+  };
+
+  handleChange = (understanding) => (event) => {
+    event.preventDefault();
     this.setState({
-      feedback: { ...this.state.feedback, feedback },
+      [understanding]: event.target.value,
     });
   };
 
-  handleChange = () => {
-    console.log('Handling it.');
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.dispatch({
+      type: 'ADD_UNDERSTANDING',
+      payload: this.state,
+    });
+    this.gotoSupport();
   };
 
-  handleClick = () => {
-    console.log(`I SAID I'M HANDLING IT!`);
+  gotoSupport = () => {
+    this.props.history.push('/support');
   };
 
   render() {
@@ -21,11 +35,7 @@ class Understanding extends Component {
       <div>
         <h1>How well are you understanding the content?</h1>
         <form onSubmit={this.handleSubmit}>
-          <input
-            onChange={this.handleChange()}
-            type="number"
-            value={this.props.state.feedback.understanding}
-          />
+          <input onChange={this.handleChange('understanding')} type="number" />
           <button type="submit">Next</button>
         </form>
       </div>
@@ -33,4 +43,6 @@ class Understanding extends Component {
   }
 }
 
-export default Understanding;
+const mapStoreToProps = (store) => ({ store });
+
+export default connect(mapStoreToProps)(Understanding);

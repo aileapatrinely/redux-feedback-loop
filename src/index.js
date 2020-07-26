@@ -18,6 +18,15 @@ const feedbackReducer = (state = feedback, action) => {
   if (action.type === 'ADD_FEELINGS') {
     return { ...state, feeling: action.payload };
   }
+  if (action.type === 'ADD_UNDERSTANDING') {
+    return { ...state, understanding: action.payload };
+  }
+  if (action.type === 'ADD_SUPPORT') {
+    return { ...state, support: action.payload };
+  }
+  if (action.type === 'ADD_COMMENTS') {
+    return { ...state, comments: action.payload };
+  }
   return state;
 };
 

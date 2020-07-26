@@ -4,18 +4,16 @@ import { connect } from 'react-redux';
 
 class Feeling extends Component {
   state = {
-    feedback: {
-      feeling: 0,
-      understanding: 0,
-      support: 0,
-      comments: '',
-    },
+    feeling: 0,
+    understanding: 0,
+    support: 0,
+    comments: '',
   };
 
   handleChange = (feeling) => (event) => {
     event.preventDefault();
     this.setState({
-      feedback: { [feeling]: event.target.value },
+      [feeling]: event.target.value,
     });
   };
 
@@ -23,10 +21,9 @@ class Feeling extends Component {
     event.preventDefault();
     this.props.dispatch({
       type: 'ADD_FEELINGS',
-      payload: this.state.feedback,
+      payload: this.state,
     });
     this.gotoUnderstanding();
-    this.props.addFeelings(this.props.feedback);
   };
 
   gotoUnderstanding = () => {
@@ -38,11 +35,7 @@ class Feeling extends Component {
       <div>
         <h1>How are you feeling today?</h1>
         <form onSubmit={this.handleSubmit}>
-          <input
-            onChange={this.handleChange()}
-            type="number"
-            value={this.state.feedback.feeling}
-          />
+          <input onChange={this.handleChange('feeling')} type="number" />
           <button type="submit">Next</button>
         </form>
       </div>

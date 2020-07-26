@@ -1,24 +1,46 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class Support extends Component {
-  handleChange = () => {
-    console.log('Handling it.');
+  state = {
+    feeling: 0,
+    understanding: 0,
+    support: 0,
+    comments: '',
   };
 
-  handleClick = () => {
-    console.log(`I SAID I'M HANDLING IT!`);
+  handleChange = (support) => (event) => {
+    event.preventDefault();
+    this.setState({
+      [support]: event.target.value,
+    });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.dispatch({
+      type: 'ADD_SUPPORT',
+      payload: this.state,
+    });
+    this.gotoComments();
+  };
+
+  gotoComments = () => {
+    this.props.history.push('/comments');
   };
 
   render() {
     return (
       <div>
         <h1>How well are you being supported?</h1>
-        <input onChange={this.handleChange()} type="number" />
-        <button onClick={this.handleClick()}>Next</button>
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.handleChange('support')} type="number" />
+          <button type="submit">Next</button>
+        </form>
       </div>
     );
   }
 }
 
-export default Support;
+export default connect()(Support);
