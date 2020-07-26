@@ -19,10 +19,14 @@ class Review extends Component {
     console.log(this.props);
     return (
       <div>
-        <p>{this.props.store.feedbackReducer.feeling}</p>
-        <p>{this.props.store.feedbackReducer.understanding}</p>
-        <p>{this.props.store.feedbackReducer.support}</p>
-        <p>{this.props.store.feedbackReducer.comments}</p>
+        <h2>Feelings:</h2>
+        <h3>{this.props.store.feedbackReducer.feeling}</h3>
+        <h2>Understanding:</h2>
+        <h3>{this.props.store.feedbackReducer.understanding}</h3>
+        <h2>Support:</h2>
+        <h3>{this.props.store.feedbackReducer.support}</h3>
+        <h2>Comments:</h2>
+        <h3>{this.props.store.feedbackReducer.comments}</h3>
         <button onClick={this.postFeedback(this.props.store.feedbackReducer)}>
           Submit
         </button>
